@@ -1,0 +1,1427 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AgentHub — Latest AI Agents</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #07090f;
+            --card: #0e121c;
+            --card-hover: #151b29;
+            --border: #202838;
+            --text: #f5f7fb;
+            --muted: #8c96aa;
+            --primary: #7c5cff;
+            --primary-2: #9d7cff;
+            --green: #37d99a;
+            --yellow: #ffc857;
+            --red: #ff667d;
+        }
+
+        body {
+            font-family: Inter, Arial, sans-serif;
+            background:
+                radial-gradient(circle at 15% 10%, rgba(124, 92, 255, .15), transparent 28%),
+                radial-gradient(circle at 85% 5%, rgba(55, 217, 154, .08), transparent 25%),
+                var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            height: 72px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            backdrop-filter: blur(20px);
+            background: rgba(7, 9, 15, .8);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--primary-2);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: .2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 17px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* HERO */
+
+        .hero {
+            text-align: center;
+            max-width: 900px;
+            margin: 85px auto 50px;
+            padding: 0 20px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 13px;
+            border: 1px solid rgba(124, 92, 255, .4);
+            background: rgba(124, 92, 255, .1);
+            border-radius: 30px;
+            color: #bbaaff;
+            font-size: 13px;
+            margin-bottom: 22px;
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--green);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--green);
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 76px);
+            line-height: .98;
+            letter-spacing: -4px;
+            margin-bottom: 22px;
+        }
+
+        .gradient {
+            background: linear-gradient(100deg, #9b7cff, #48e4ad);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.7;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        /* SEARCH */
+
+        .search-area {
+            max-width: 760px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #0c1019;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 5px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+        }
+
+        .search-icon {
+            padding: 0 15px;
+            color: var(--muted);
+            font-size: 20px;
+        }
+
+        .search-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 15px;
+            padding: 15px 0;
+        }
+
+        .search-box button {
+            border: none;
+            background: var(--primary);
+            color: white;
+            padding: 13px 21px;
+            border-radius: 11px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 86%;
+            max-width: 1250px;
+            margin: 0 auto 80px;
+        }
+
+        /* FILTERS */
+
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 35px;
+        }
+
+        .filter {
+            white-space: nowrap;
+            border: 1px solid var(--border);
+            background: #0b0f17;
+            color: var(--muted);
+            padding: 9px 15px;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .filter:hover,
+        .filter.active {
+            background: rgba(124, 92, 255, .14);
+            color: white;
+            border-color: rgba(124, 92, 255, .55);
+        }
+
+        /* SECTION */
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .section-header h2 {
+            font-size: 23px;
+        }
+
+        .section-header span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* TRENDING */
+
+        .trending {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 55px;
+        }
+
+        .trend-card {
+            padding: 18px;
+            border: 1px solid var(--border);
+            background: #0d121b;
+            border-radius: 14px;
+            transition: .25s;
+        }
+
+        .trend-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(124, 92, 255, .5);
+        }
+
+        .trend-image {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .rank {
+            color: var(--primary-2);
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .trend-card h3 {
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .trend-card p {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .up {
+            color: var(--green);
+            font-size: 11px;
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* AGENT GRID */
+
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 55px;
+        }
+
+        /* CARD */
+
+        .agent-card {
+            background: linear-gradient(145deg, #101520, #0b0f17);
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            overflow: hidden;
+            transition: .25s ease;
+            position: relative;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(124, 92, 255, .5);
+            background: var(--card-hover);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, .25);
+        }
+
+        /* CARD IMAGE */
+
+        .agent-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+            opacity: .88;
+            transition: .3s;
+        }
+
+        .agent-card:hover .agent-image {
+            transform: scale(1.04);
+            opacity: 1;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .agent-logo {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 13px;
+            border: 3px solid #111722;
+            margin-top: -42px;
+            position: relative;
+            background: #111722;
+        }
+
+        .bookmark {
+            background: #111722;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 19px;
+        }
+
+        .agent-card h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+            min-height: 62px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin: 15px 0;
+        }
+
+        .tag {
+            font-size: 11px;
+            padding: 5px 8px;
+            border-radius: 6px;
+            background: #171d2a;
+            color: #aab3c5;
+        }
+
+        .card-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 14px;
+            border-top: 1px solid #1c2331;
+        }
+
+        .rating {
+            color: var(--yellow);
+            font-size: 13px;
+        }
+
+        .rating span {
+            color: var(--muted);
+            margin-left: 3px;
+        }
+
+        .price {
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* EMPTY */
+
+        .empty {
+            text-align: center;
+            display: none;
+            padding: 60px;
+            color: var(--muted);
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 35px 7%;
+            display: flex;
+            justify-content: space-between;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 950px) {
+
+            .agent-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .trending {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media(max-width: 620px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            .submit-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .hero {
+                margin-top: 55px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .agent-grid,
+            .trending {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            Agent<span>Hub</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="#">Discover</a>
+            <a href="#trending">Trending</a>
+            <a href="#latest">Latest</a>
+            <a href="#">Categories</a>
+        </div>
+
+        <button class="submit-btn">
+            + Submit Agent
+        </button>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="badge">
+            <span class="badge-dot"></span>
+            Updated August 2026
+        </div>
+
+        <h1>
+            Discover the world's<br>
+            <span class="gradient">latest AI agents.</span>
+        </h1>
+
+        <p>
+            Explore autonomous AI agents for coding, research,
+            marketing, productivity, business automation and more.
+        </p>
+
+    </section>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-area">
+
+        <div class="search-box">
+
+            <div class="search-icon">⌕</div>
+
+            <input type="text" id="searchInput" placeholder="Search AI agents, categories, capabilities..."
+                onkeyup="searchAgents()">
+
+            <button onclick="searchAgents()">
+                Search
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <main class="container">
+
+        <!-- FILTERS -->
+
+        <div class="filter-bar">
+
+            <button class="filter active" onclick="filterAgents('all', this)">
+                All Agents
+            </button>
+
+            <button class="filter" onclick="filterAgents('coding', this)">
+                💻 Coding
+            </button>
+
+            <button class="filter" onclick="filterAgents('research', this)">
+                🔬 Research
+            </button>
+
+            <button class="filter" onclick="filterAgents('marketing', this)">
+                📣 Marketing
+            </button>
+
+            <button class="filter" onclick="filterAgents('productivity', this)">
+                ⚡ Productivity
+            </button>
+
+            <button class="filter" onclick="filterAgents('business', this)">
+                💼 Business
+            </button>
+
+            <button class="filter" onclick="filterAgents('creative', this)">
+                🎨 Creative
+            </button>
+
+        </div>
+
+
+        <!-- TRENDING -->
+
+        <section id="trending">
+
+            <div class="section-header">
+                <h2>🔥 Trending Agents</h2>
+                <span>Popular this week</span>
+            </div>
+
+            <div class="trending">
+
+                <div class="trend-card">
+
+                    <img class="trend-image" src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=128"
+                        alt="Claude">
+
+                    <div class="rank">#01</div>
+
+                    <h3>Claude Code</h3>
+
+                    <p>Autonomous coding assistant</p>
+
+                    <span class="up">
+                        ↑ 28% this week
+                    </span>
+
+                </div>
+
+
+                <div class="trend-card">
+
+                    <img class="trend-image" src="https://www.google.com/s2/favicons?domain=manus.im&sz=128"
+                        alt="Manus">
+
+                    <div class="rank">#02</div>
+
+                    <h3>Manus</h3>
+
+                    <p>General-purpose AI agent</p>
+
+                    <span class="up">
+                        ↑ 21% this week
+                    </span>
+
+                </div>
+
+
+                <div class="trend-card">
+
+                    <img class="trend-image" src="https://www.google.com/s2/favicons?domain=cursor.com&sz=128"
+                        alt="Cursor">
+
+                    <div class="rank">#03</div>
+
+                    <h3>Cursor Agent</h3>
+
+                    <p>AI software engineering agent</p>
+
+                    <span class="up">
+                        ↑ 18% this week
+                    </span>
+
+                </div>
+
+
+                <div class="trend-card">
+
+                    <img class="trend-image" src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=128"
+                        alt="Perplexity">
+
+                    <div class="rank">#04</div>
+
+                    <h3>Perplexity</h3>
+
+                    <p>AI research assistant</p>
+
+                    <span class="up">
+                        ↑ 14% this week
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LATEST -->
+
+        <section id="latest">
+
+            <div class="section-header">
+
+                <h2>✨ Latest AI Agents</h2>
+
+                <span id="resultCount">
+                    12 agents
+                </span>
+
+            </div>
+
+
+            <div class="agent-grid" id="agentGrid">
+
+
+                <!-- CLAUDE -->
+
+                <article class="agent-card" data-category="coding" data-name="Claude Code coding developer">
+
+                    <img class="agent-image"
+                        src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=900&q=80"
+                        alt="Coding workspace">
+
+                    <div class="card-content">
+
+                        <div class="card-top">
+
+                            <img class="agent-logo" src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=128"
+                                alt="Claude logo">
+
+                            <button class="bookmark">♡</button>
+
+                        </div>
+
+                        <h3>Claude Code</h3>
+
+                        <p class="description">
+                            Autonomous coding agent that can understand,
+                            modify, debug and work across software projects.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Coding</span>
+                            <span class="tag">Developer</span>
+                            <span class="tag">CLI</span>
+                        </div>
+
+                        <div class="card-bottom">
+
+                            <div class="rating">
+                                ★ 4.9 <span>(2.4k)</span>
+                            </div>
+
+                            <div class="price">
+                                Paid
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PERPLEXITY -->
+
+                <article class="agent-card" data-category="research" data-name="Perplexity research search web">
+
+                    <img class="agent-image"
+                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80"
+                        alt="Research analytics">
+
+                    <div class="card-content">
+
+                        <div class="card-top">
+
+                            <img class="agent-logo" src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=128"
+                                alt="Perplexity logo">
+
+                            <button class="bookmark">♡</button>
+
+                        </div>
+
+                        <h3>Perplexity</h3>
+
+                        <p class="description">
+                            AI research agent designed to search the web,
+                            analyze sources and produce research answers.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Research</span>
+                            <span class="tag">Search</span>
+                            <span class="tag">Web</span>
+                        </div>
+
+                        <div class="card-bottom">
+
+                            <div class="rating">
+                                ★ 4.8 <span>(4.1k)</span>
+                            </div>
+
+                            <div class="price">
+                                Freemium
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CURSOR -->
+
+                <article class="agent-card" data-category="coding" data-name="Cursor Agent developer coding">
+
+                    <img class="agent-image"
+                        src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80"
+                        alt="Developer code">
+
+                    <div class="card-content">
+
+                        <div class="card-top">
+
+                            <img class="agent-logo" src="https://www.google.com/s2/favicons?domain=cursor.com&sz=128"
+                                alt="Cursor logo">
+
+                            <button class="bookmark">♡</button>
+
+                        </div>
+
+                        <h3>Cursor Agent</h3>
+
+                        <p class="description">
+                            AI software engineering agent capable of
+                            planning, editing files and completing tasks.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Coding</span>
+                            <span class="tag">IDE</span>
+                            <span class="tag">Automation</span>
+                        </div>
+
+                        <div class="card-bottom">
+
+                            <div class="rating">
+                                ★ 4.8 <span>(3.2k)</span>
+                            </div>
+
+                            <div class="price">
+                                Freemium
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- MANUS -->
+
+                <article class="agent-card" data-category="business" data-name="Manus business automation autonomous">
+
+                    <img class="agent-image"
+                        src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=900&q=80"
+                        alt="AI robot">
+
+                    <div class="card-content">
+
+                        <div class="card-top">
+
+                            <img class="agent-logo" src="https://www.google.com/s2/favicons?domain=manus.im&sz=128"
+                                alt="Manus logo">
+
+                            <button class="bookmark">♡</button>
+
+                        </div>
+
+                        <h3>Manus</h3>
+
+                        <p class="description">
+                            General-purpose autonomous agent for research,
+                            analysis, content creation and complex workflows.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Autonomous</span>
+                            <span class="tag">Research</span>
+                            <span class="tag">Business</span>
+                        </div>
+
+                        <div class="card-bottom">
+
+                            <div class="rating">
+                                ★ 4.7 <span>(1.8k)</span>
+                            </div>
+
+                            <div class="price">
+                                Paid
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- MIDJOURNEY -->
+
+                <article class="agent-card" data-category="creative" data-name="Midjourney creative design images">
+
+                    <img class="agent-image"
+                        src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=900&q=80"
+                        alt="Creative digital art">
+
+                    <div class="card-content">
+
+                        <div class="card-top">
+
+                            <img class="agent-logo"
+                                src="https://www.google.com/s2/favicons?domain=midjourney.com&sz=128"
+                                alt="Midjourney logo">
+
+                            <button class="bookmark">♡</button>
+
+                        </div>
+
+                        <h3>Midjourney</h3>
+
+                        <p class="description">
+                            Creative AI system for generating visual concepts,
+                            artwork and design explorations.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Creative</span>
+                            <span class="tag">Images</span>
+                            <span class="tag">Design</span>
+                        </div>
+
+                        <div class="card-bottom">
+
+                            <div class="rating">
+                                ★ 4.7 <span>(6.5k)</span>
+                            </div>
+
+                            <div class="price">
+                                Paid
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- JASPER -->
+
+                <article class="agent-card" data-category="marketing" data-name="Jasper marketing content">
+
+                    <img class="agent-image"
+                        src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80"
+                        alt="Marketing team">
+
+                    <div class="card-content">
+
+                        <div class="card-top">
+
+                            <img class="agent-logo" src="https://www.google.com/s2/favicons?domain=jasper.ai&sz=128"
+                                alt="Jasper logo">
+
+                            <button class="bookmark">♡</button>
+
+                        </div>
+
+                        <h3>Jasper AI</h3>
+
+                        <p class="description">
+                            AI marketing agent for campaign creation,
+                            content workflows and brand-focused marketing.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Marketing</span>
+                            <span class="tag">Content</span>
+                            <span class="tag">Brand</span>
+                        </div>
+
+                        <div class="card-bottom">
+
+                            <div class="rating">
+                                ★ 4.6 <span>(1.9k)</span>
+                            </div>
+
+                            <div class="price">
+                                Paid
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- NOTION -->
+
+                <article class="agent-card" data-category="productivity" data-name="Notion AI productivity workspace">
+
+                    <img class="agent-image"
+                        src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=900&q=80"
+                        alt="Productivity workspace">
+
+                    <div class="card-content">
+
+                        <div class="card-top">
+
+                            <img class="agent-logo" src="https://www.google.com/s2/favicons?domain=notion.so&sz=128"
+                                alt="Notion logo">
+
+                            <button class="bookmark">♡</button>
+
+                        </div>
+
+                        <h3>Notion AI</h3>
+
+                        <p class="description">
+                            Productivity agent for writing, summarization,
+                            knowledge management and workspace automation.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Productivity</span>
+                            <span class="tag">Writing</span>
+                            <span class="tag">Workspace</span>
+                        </div>
+
+                        <div class="card-bottom">
+
+                            <div class="rating">
+                                ★ 4.6 <span>(3.7k)</span>
+                            </div>
+
+                            <div class="price">
+                                Freemium
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- GENSPARK -->
+
+                <article class="agent-card" data-category="research" data-name="Genspark research search agents">
+
+                    <img class="agent-image"
+                        src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&w=900&q=80"
+                        alt="Artificial intelligence">
+
+                    <div class="card-content">
+
+                        <div class="card-top">
+
+                            <img class="agent-logo" src="https://www.google.com/s2/favicons?domain=genspark.ai&sz=128"
+                                alt="Genspark logo">
+
+                            <button class="bookmark">♡</button>
+
+                        </div>
+
+                        <h3>Genspark</h3>
+
+                        <p class="description">
+                            AI workspace combining research, search,
+                            content generation and task execution.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Research</span>
+                            <span class="tag">Search</span>
+                            <span class="tag">Agents</span>
+                        </div>
+
+                        <div class="card-bottom">
+
+                            <div class="rating">
+                                ★ 4.5 <span>(980)</span>
+                            </div>
+
+                            <div class="price">
+                                Freemium
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- AGENTFORCE -->
+
+                <article class="agent-card" data-category="business" data-name="Agentforce Salesforce business">
+
+                    <img class="agent-image"
+                        src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80"
+                        alt="Business team">
+
+                    <div class="card-content">
+
+                        <div class="card-top">
+
+                            <img class="agent-logo"
+                                src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=128"
+                                alt="Salesforce logo">
+
+                            <button class="bookmark">♡</button>
+
+                        </div>
+
+                        <h3>Agentforce</h3>
+
+                        <p class="description">
+                            Enterprise AI agents designed to automate
+                            customer service, sales and business workflows.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Enterprise</span>
+                            <span class="tag">CRM</span>
+                            <span class="tag">Automation</span>
+                        </div>
+
+                        <div class="card-bottom">
+
+                            <div class="rating">
+                                ★ 4.5 <span>(1.2k)</span>
+                            </div>
+
+                            <div class="price">
+                                Enterprise
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- GITHUB COPILOT -->
+
+                <article class="agent-card" data-category="coding" data-name="GitHub Copilot coding developer">
+
+                    <img class="agent-image"
+                        src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=900&q=80"
+                        alt="Programming">
+
+                    <div class="card-content">
+
+                        <div class="card-top">
+
+                            <img class="agent-logo" src="https://www.google.com/s2/favicons?domain=github.com&sz=128"
+                                alt="GitHub logo">
+
+                            <button class="bookmark">♡</button>
+
+                        </div>
+
+                        <h3>GitHub Copilot</h3>
+
+                        <p class="description">
+                            AI coding companion that helps developers write,
+                            review and understand code.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Coding</span>
+                            <span class="tag">GitHub</span>
+                            <span class="tag">Developer</span>
+                        </div>
+
+                        <div class="card-bottom">
+
+                            <div class="rating">
+                                ★ 4.7 <span>(8.2k)</span>
+                            </div>
+
+                            <div class="price">
+                                Paid
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- RUNWAY -->
+
+                <article class="agent-card" data-category="creative" data-name="Runway video creative generation">
+
+                    <img class="agent-image"
+                        src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=80"
+                        alt="Video production">
+
+                    <div class="card-content">
+
+                        <div class="card-top">
+
+                            <img class="agent-logo" src="https://www.google.com/s2/favicons?domain=runwayml.com&sz=128"
+                                alt="Runway logo">
+
+                            <button class="bookmark">♡</button>
+
+                        </div>
+
+                        <h3>Runway</h3>
+
+                        <p class="description">
+                            AI creative platform for generating and editing
+                            video, images and visual content.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Video</span>
+                            <span class="tag">Creative</span>
+                            <span class="tag">Generation</span>
+                        </div>
+
+                        <div class="card-bottom">
+
+                            <div class="rating">
+                                ★ 4.6 <span>(2.7k)</span>
+                            </div>
+
+                            <div class="price">
+                                Freemium
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- RECLAIM -->
+
+                <article class="agent-card" data-category="productivity" data-name="Reclaim AI productivity scheduling">
+
+                    <img class="agent-image"
+                        src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=900&q=80"
+                        alt="Calendar planning">
+
+                    <div class="card-content">
+
+                        <div class="card-top">
+
+                            <img class="agent-logo" src="https://www.google.com/s2/favicons?domain=reclaim.ai&sz=128"
+                                alt="Reclaim logo">
+
+                            <button class="bookmark">♡</button>
+
+                        </div>
+
+                        <h3>Reclaim AI</h3>
+
+                        <p class="description">
+                            Intelligent scheduling agent that automatically
+                            organizes tasks, habits and meetings.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Scheduling</span>
+                            <span class="tag">Productivity</span>
+                            <span class="tag">Calendar</span>
+                        </div>
+
+                        <div class="card-bottom">
+
+                            <div class="rating">
+                                ★ 4.4 <span>(1.1k)</span>
+                            </div>
+
+                            <div class="price">
+                                Freemium
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <div class="empty" id="empty">
+                No AI agents found. Try another search or category.
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div>
+            <strong>AgentHub</strong>
+            — Discover better AI agents.
+        </div>
+
+        <div>
+            © 2026 AgentHub · Built for the AI era
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        let currentCategory = "all";
+
+
+        function filterAgents(category, button) {
+
+            currentCategory = category;
+
+            document.querySelectorAll(".filter").forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            applyFilters();
+        }
+
+
+        function searchAgents() {
+            applyFilters();
+        }
+
+
+        function applyFilters() {
+
+            const query =
+                document
+                    .getElementById("searchInput")
+                    .value
+                    .toLowerCase()
+                    .trim();
+
+            const cards =
+                document.querySelectorAll(".agent-card");
+
+            let visible = 0;
+
+            cards.forEach(card => {
+
+                const name =
+                    card.dataset.name.toLowerCase();
+
+                const category =
+                    card.dataset.category.toLowerCase();
+
+                const matchesSearch =
+                    name.includes(query);
+
+                const matchesCategory =
+                    currentCategory === "all" ||
+                    category === currentCategory;
+
+                if (matchesSearch && matchesCategory) {
+
+                    card.style.display = "block";
+                    visible++;
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+            document.getElementById("resultCount").textContent =
+                visible +
+                (visible === 1 ? " agent" : " agents");
+
+            document.getElementById("empty").style.display =
+                visible === 0 ? "block" : "none";
+        }
+
+
+        /* BOOKMARKS */
+
+        document.querySelectorAll(".bookmark").forEach(button => {
+
+            button.addEventListener("click", function () {
+
+                if (this.textContent === "♡") {
+
+                    this.textContent = "♥";
+                    this.style.color = "#ff667d";
+
+                } else {
+
+                    this.textContent = "♡";
+                    this.style.color = "";
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+```

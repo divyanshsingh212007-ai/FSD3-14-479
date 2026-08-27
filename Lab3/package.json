@@ -4,8 +4,8 @@
   "description": "- http - Hyper text transfer protocol\r - html - Hyper text markup language\r - css - Cascading Style Sheet\r - npm - Node package manager",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "node prg8.js",
+    "dev": "nodemon prg8.js"
     
   },
   "keywords": [],

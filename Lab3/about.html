@@ -1,0 +1,216 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentHub | About</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #07090f;
+            color: white;
+        }
+
+        nav {
+            height: 72px;
+            padding: 0 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #202838;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #8c6cff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #929caf;
+            text-decoration: none;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: white;
+        }
+
+        .contact-btn {
+            background: #7c5cff;
+            padding: 10px 18px;
+            border-radius: 9px;
+            color: white !important;
+        }
+
+        .container {
+            width: 82%;
+            max-width: 1050px;
+            margin: 90px auto;
+        }
+
+        .label {
+            color: #9c7cff;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 55px;
+            margin-bottom: 25px;
+        }
+
+        .gradient {
+            color: #9c7cff;
+        }
+
+        .intro {
+            color: #929caf;
+            max-width: 750px;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        .cards {
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            padding: 28px;
+            border: 1px solid #202838;
+            background: #0e121c;
+            border-radius: 15px;
+        }
+
+        .card-icon {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        .card p {
+            color: #8993a6;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        footer {
+            border-top: 1px solid #202838;
+            padding: 30px 8%;
+            color: #737d90;
+            text-align: center;
+        }
+
+        @media(max-width:700px) {
+            nav ul {
+                display: none;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">Agent<span>Hub</span></div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a class="active" href="about.html">About</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a class="contact-btn" href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <main class="container">
+
+        <div class="label">ABOUT AGENTHUB</div>
+
+        <h1>
+            Making AI easier to <span class="gradient">discover.</span>
+        </h1>
+
+        <p class="intro">
+            AgentHub is an AI agent discovery platform created to help
+            people understand, explore and find the right AI tools for
+            their needs.
+        </p>
+
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-icon">🔍</div>
+                <h2>Discover</h2>
+                <p>
+                    Find AI agents across coding, research, business,
+                    productivity, marketing and creative work.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🧠</div>
+                <h2>Understand</h2>
+                <p>
+                    Learn what each AI agent does, what problems it solves
+                    and where it can fit into your workflow.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🚀</div>
+                <h2>Innovate</h2>
+                <p>
+                    Explore emerging AI technologies and discover new
+                    ways autonomous agents can transform everyday work.
+                </p>
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+        © 2026 AgentHub — Discover better AI.
+    </footer>
+
+</body>
+
+</html>
+```
