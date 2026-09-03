@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "brand": "Apple",
+    "model": "iPhone 17 Pro Max",
+    "price": 149900,
+    "currency": "INR",
+    "display": "6.9-inch OLED",
+    "processor": "Apple A19 Pro",
+    "ram": "12GB",
+    "storage": ["256GB", "512GB", "1TB"],
+    "camera": {
+      "rear": "48MP + 48MP + 48MP",
+      "front": "24MP"
+    },
+    "battery": "4685mAh",
+    "os": "iOS 26",
+    "5g": true
+  },
+  {
+    "id": 2,
+    "brand": "Samsung",
+    "model": "Galaxy S26 Ultra",
+    "price": 139999,
+    "currency": "INR",
+    "display": "6.9-inch Dynamic AMOLED 2X",
+    "processor": "Snapdragon 8 Elite Gen 5",
+    "ram": "12GB",
+    "storage": ["256GB", "512GB", "1TB"],
+    "camera": {
+      "rear": "200MP + 50MP + 50MP + 10MP",
+      "front": "12MP"
+    },
+    "battery": "5000mAh",
+    "os": "Android 16",
+    "5g": true
+  },
+  {
+    "id": 3,
+    "brand": "Google",
+    "model": "Pixel 10 Pro XL",
+    "price": 124999,
+    "currency": "INR",
+    "display": "6.8-inch LTPO OLED",
+    "processor": "Google Tensor G5",
+    "ram": "16GB",
+    "storage": ["256GB", "512GB", "1TB"],
+    "camera": {
+      "rear": "50MP + 48MP + 48MP",
+      "front": "42MP"
+    },
+    "battery": "5200mAh",
+    "os": "Android 16",
+    "5g": true
+  },
+  {
+    "id": 4,
+    "brand": "OnePlus",
+    "model": "OnePlus 13",
+    "price": 69999,
+    "currency": "INR",
+    "display": "6.82-inch AMOLED",
+    "processor": "Snapdragon 8 Elite",
+    "ram": "16GB",
+    "storage": ["256GB", "512GB"],
+    "camera": {
+      "rear": "50MP + 50MP + 50MP",
+      "front": "32MP"
+    },
+    "battery": "6000mAh",
+    "os": "Android 15",
+    "5g": true
+  },
+  {
+    "id": 5,
+    "brand": "Xiaomi",
+    "model": "Xiaomi 15 Ultra",
+    "price": 109999,
+    "currency": "INR",
+    "display": "6.73-inch AMOLED",
+    "processor": "Snapdragon 8 Elite",
+    "ram": "16GB",
+    "storage": ["512GB", "1TB"],
+    "camera": {
+      "rear": "50MP + 50MP + 200MP + 50MP",
+      "front": "32MP"
+    },
+    "battery": "5410mAh",
+    "os": "Android 15",
+    "5g": true
+  },
+  {
+    "id": 6,
+    "brand": "Nothing",
+    "model": "Phone (3)",
+    "price": 79999,
+    "currency": "INR",
+    "display": "6.67-inch AMOLED",
+    "processor": "Snapdragon 8s Gen 4",
+    "ram": "12GB",
+    "storage": ["256GB", "512GB"],
+    "camera": {
+      "rear": "50MP + 50MP + 50MP",
+      "front": "50MP"
+    },
+    "battery": "5150mAh",
+    "os": "Android 15",
+    "5g": true
+  },
+  {
+    "id": 7,
+    "brand": "Vivo",
+    "model": "Vivo X200 Pro",
+    "price": 94999,
+    "currency": "INR",
+    "display": "6.78-inch AMOLED",
+    "processor": "MediaTek Dimensity 9400",
+    "ram": "16GB",
+    "storage": ["512GB"],
+    "camera": {
+      "rear": "50MP + 50MP + 200MP",
+      "front": "32MP"
+    },
+    "battery": "6000mAh",
+    "os": "Android 15",
+    "5g": true
+  },
+  {
+    "id": 8,
+    "brand": "OPPO",
+    "model": "Find X8 Pro",
+    "price": 99999,
+    "currency": "INR",
+    "display": "6.78-inch AMOLED",
+    "processor": "MediaTek Dimensity 9400",
+    "ram": "16GB",
+    "storage": ["512GB"],
+    "camera": {
+      "rear": "50MP + 50MP + 50MP + 50MP",
+      "front": "32MP"
+    },
+    "battery": "5910mAh",
+    "os": "Android 15",
+    "5g": true
+  },
+  {
+    "id": 9,
+    "brand": "Motorola",
+    "model": "Edge 60 Pro",
+    "price": 29999,
+    "currency": "INR",
+    "display": "6.7-inch pOLED",
+    "processor": "MediaTek Dimensity 8350",
+    "ram": "12GB",
+    "storage": ["256GB"],
+    "camera": {
+      "rear": "50MP + 50MP + 10MP",
+      "front": "50MP"
+    },
+    "battery": "6000mAh",
+    "os": "Android 15",
+    "5g": true
+  },
+  {
+    "id": 10,
+    "brand": "Realme",
+    "model": "GT 7 Pro",
+    "price": 59999,
+    "currency": "INR",
+    "display": "6.78-inch AMOLED",
+    "processor": "Snapdragon 8 Elite",
+    "ram": "16GB",
+    "storage": ["256GB", "512GB"],
+    "camera": {
+      "rear": "50MP + 50MP + 8MP",
+      "front": "16MP"
+    },
+    "battery": "5800mAh",
+    "os": "Android 15",
+    "5g": true
+  }
+]

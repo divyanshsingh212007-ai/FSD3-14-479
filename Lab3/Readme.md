@@ -25,3 +25,20 @@ API generally start with api
 
 By default beowser can check only get request to check other three request type to pus
 we require frontend or third party api tester like postman, thunderclan, echo API.
+
+## Server can set header to send data
+1. res.writeHeader()
+2. res.setHeader
+
+##
+1. res.statusCode()
+2. res.writeHeader()
+
+## Request Methods
+1. get
+2. Post
+3. put/patch
+4. delete Server can set status code
+
+## Routes
+
