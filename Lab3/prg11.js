@@ -47,6 +47,7 @@ const server = http.createServer((req,res) => {
        }
 
 
+
         
     else if(req.url === '/product' && req.method === 'PUT')
         res.end("Update Product")
