@@ -5,7 +5,7 @@ let teams = [
         tl: 'Aashish Raj Singh',
         email: 'ashi.raj@gmail.com',
         members: 6,
-    }
+    },
     {
         id:2,
         tname: "Code Crafters",
