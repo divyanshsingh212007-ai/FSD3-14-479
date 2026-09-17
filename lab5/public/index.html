@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gambit House — play, host arenas, study</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400&family=Karla:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --oak: #191410;
+            --oak-2: #211A14;
+            --oak-3: #2B221A;
+            --walnut: #7A5334;
+            --boxwood: #EADFC4;
+            --brass: #C9992B;
+            --clock: #D0472F;
+            --ink: #F3EADA;
+            --mute: #A08F76;
+            --line: rgba(234, 223, 196, .14);
+            --sq: clamp(34px, 5.4vw, 58px);
+            --serif: "Bodoni Moda", Georgia, "Times New Roman", serif;
+            --sans: "Karla", "Helvetica Neue", Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            background: var(--oak);
+            color: var(--ink);
+            font-family: var(--sans);
+            font-size: 17px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            max-width: 100%
+        }
+
+        a {
+            color: inherit
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--brass);
+            outline-offset: 3px;
+            border-radius: 2px
+        }
+
+        .wrap {
+            width: min(1180px, 92vw);
+            margin-inline: auto
+        }
+
+        /* ---------- nav ---------- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            background: rgba(25, 20, 16, .9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line)
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: .9rem 0
+        }
+
+        .mark {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            font-family: var(--serif);
+            font-size: 1.28rem;
+            letter-spacing: .01em;
+            text-decoration: none;
+            white-space: nowrap
+        }
+
+        .mark span {
+            color: var(--brass);
+            font-size: 1.5rem;
+            line-height: 1
+        }
+
+        .nav nav {
+            display: flex;
+            gap: 1.6rem;
+            margin-left: auto;
+            font-size: .95rem
+        }
+
+        .nav nav a {
+            text-decoration: none;
+            color: var(--mute);
+            padding: .2rem 0;
+            border-bottom: 1px solid transparent
+        }
+
+        .nav nav a:hover {
+            color: var(--ink);
+            border-bottom-color: var(--brass)
+        }
+
+        .nav .acts {
+            display: flex;
+            gap: .6rem;
+            align-items: center
+        }
+
+        .btn {
+            font-family: var(--sans);
+            font-size: .95rem;
+            font-weight: 600;
+            border-radius: 3px;
+            padding: .62rem 1.15rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            transition: background .15s, color .15s, border-color .15s
+        }
+
+        .btn-solid {
+            background: var(--brass);
+            color: #1B1408
+        }
+
+        .btn-solid:hover {
+            background: #DBAA3A
+        }
+
+        .btn-ghost {
+            border-color: var(--line);
+            color: var(--ink);
+            background: transparent
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--boxwood);
+            background: rgba(234, 223, 196, .06)
+        }
+
+        .btn-lg {
+            padding: .85rem 1.6rem;
+            font-size: 1.02rem
+        }
+
+        /* ---------- hero ---------- */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: clamp(2rem, 5vw, 4.5rem);
+            align-items: center;
+            padding: clamp(3rem, 7vw, 6rem) 0 clamp(2.5rem, 5vw, 4rem)
+        }
+
+        h1 {
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: clamp(2.6rem, 6.2vw, 4.6rem);
+            line-height: 1.02;
+            margin: 0 0 1.1rem;
+            letter-spacing: -.015em
+        }
+
+        h1 em {
+            font-style: italic
+        }
+
+        .lede {
+            font-size: 1.12rem;
+            color: #D8CCB4;
+            max-width: 34ch;
+            margin: 0 0 1.9rem
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: .8rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.2rem
+        }
+
+        .tally {
+            display: flex;
+            gap: 2.2rem;
+            border-top: 1px solid var(--line);
+            padding-top: 1.1rem;
+            max-width: 34rem
+        }
+
+        .tally div {
+            line-height: 1.25
+        }
+
+        .tally b {
+            display: block;
+            font-family: var(--serif);
+            font-size: 1.7rem;
+            font-weight: 500
+        }
+
+        .tally small {
+            color: var(--mute);
+            font-size: .85rem
+        }
+
+        /* ---------- board ---------- */
+        .board-unit {
+            display: flex;
+            gap: 1.4rem;
+            align-items: stretch
+        }
+
+        .board-shell {
+            padding: 14px;
+            background: linear-gradient(160deg, #3A2B1D, #241A12);
+            border: 1px solid rgba(234, 223, 196, .16);
+            border-radius: 4px;
+            box-shadow: 0 30px 60px -30px #000
+        }
+
+        .board {
+            position: relative;
+            width: calc(var(--sq)*8);
+            height: calc(var(--sq)*8);
+            display: grid;
+            grid-template-columns: repeat(8, var(--sq));
+            grid-template-rows: repeat(8, var(--sq))
+        }
+
+        .sq {
+            width: var(--sq);
+            height: var(--sq)
+        }
+
+        .sq.l {
+            background: var(--boxwood)
+        }
+
+        .sq.d {
+            background: var(--walnut)
+        }
+
+        .sq.hot {
+            box-shadow: inset 0 0 0 3px var(--brass)
+        }
+
+        .pc {
+            position: absolute;
+            width: var(--sq);
+            height: var(--sq);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: calc(var(--sq)*.82);
+            line-height: 1;
+            transition: transform .42s cubic-bezier(.4, .1, .2, 1);
+            will-change: transform
+        }
+
+        .pc.w {
+            color: #FBF4E4;
+            text-shadow: 0 0 1px #3A2A16, 0 1px 0 #7A5F33, 0 2px 3px rgba(0, 0, 0, .4)
+        }
+
+        .pc.b {
+            color: #17110B;
+            text-shadow: 0 1px 0 #5C4326, 0 2px 3px rgba(0, 0, 0, .45)
+        }
+
+        .pc.gone {
+            opacity: 0;
+            transform: scale(.4) translate(var(--x), var(--y));
+            transition: opacity .22s, transform .22s
+        }
+
+        .scoresheet {
+            width: 14.5rem;
+            display: flex;
+            flex-direction: column;
+            background: var(--oak-2);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            overflow: hidden
+        }
+
+        .ss-head {
+            padding: .75rem .9rem;
+            border-bottom: 1px solid var(--line)
+        }
+
+        .ss-head b {
+            font-family: var(--serif);
+            font-size: 1.02rem;
+            font-weight: 500;
+            display: block
+        }
+
+        .ss-head small {
+            color: var(--mute);
+            font-size: .78rem
+        }
+
+        .clocks {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 1px solid var(--line)
+        }
+
+        .clk {
+            padding: .55rem .9rem;
+            font-family: var(--serif);
+            font-size: 1.25rem
+        }
+
+        .clk:first-child {
+            border-right: 1px solid var(--line)
+        }
+
+        .clk small {
+            display: block;
+            font-family: var(--sans);
+            font-size: .72rem;
+            color: var(--mute);
+            letter-spacing: .02em
+        }
+
+        .clk.live {
+            color: var(--clock)
+        }
+
+        .moves {
+            flex: 1;
+            overflow: auto;
+            padding: .5rem .55rem;
+            font-size: .92rem
+        }
+
+        .mv {
+            display: grid;
+            grid-template-columns: 1.6rem 1fr 1fr;
+            gap: .25rem;
+            align-items: center
+        }
+
+        .mv i {
+            color: var(--mute);
+            font-style: normal;
+            font-size: .8rem
+        }
+
+        .mv button {
+            background: none;
+            border: 0;
+            color: var(--ink);
+            font: inherit;
+            text-align: left;
+            padding: .2rem .35rem;
+            border-radius: 2px;
+            cursor: pointer
+        }
+
+        .mv button:hover {
+            background: rgba(234, 223, 196, .08)
+        }
+
+        .mv button.on {
+            background: var(--brass);
+            color: #1B1408;
+            font-weight: 600
+        }
+
+        .mv button:disabled {
+            color: var(--mute);
+            cursor: default
+        }
+
+        .ss-foot {
+            border-top: 1px solid var(--line);
+            padding: .6rem .9rem;
+            display: flex;
+            gap: .5rem;
+            align-items: center
+        }
+
+        .ss-foot button {
+            background: none;
+            border: 1px solid var(--line);
+            color: var(--ink);
+            border-radius: 2px;
+            width: 2rem;
+            height: 2rem;
+            cursor: pointer;
+            font-size: .9rem
+        }
+
+        .ss-foot button:hover {
+            border-color: var(--boxwood)
+        }
+
+        .ss-foot span {
+            font-size: .8rem;
+            color: var(--mute);
+            margin-left: auto
+        }
+
+        /* ---------- section furniture ---------- */
+        section {
+            padding: clamp(3rem, 6vw, 5.5rem) 0
+        }
+
+        .sec-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 2rem;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 1rem;
+            margin-bottom: 2.2rem
+        }
+
+        h2 {
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+            margin: 0;
+            letter-spacing: -.01em
+        }
+
+        .sec-head p {
+            margin: .4rem 0 0;
+            color: var(--mute);
+            max-width: 46ch;
+            font-size: .98rem
+        }
+
+        .sec-head a {
+            color: var(--brass);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: .95rem;
+            white-space: nowrap
+        }
+
+        .sec-head a:hover {
+            text-decoration: underline
+        }
+
+        /* ---------- arena pairing sheet ---------- */
+        .sheet {
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            overflow: hidden
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto auto;
+            gap: 1.5rem;
+            align-items: center;
+            padding: 1.05rem 1.3rem;
+            border-bottom: 1px solid var(--line);
+            background: var(--oak-2)
+        }
+
+        .row:nth-child(even) {
+            background: var(--oak)
+        }
+
+        .row:last-child {
+            border-bottom: 0
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--clock);
+            box-shadow: 0 0 0 4px rgba(208, 71, 47, .16)
+        }
+
+        .dot.soon {
+            background: var(--brass);
+            box-shadow: 0 0 0 4px rgba(201, 153, 43, .16)
+        }
+
+        .row h3 {
+            margin: 0;
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 1.22rem
+        }
+
+        .row h3+p {
+            margin: .15rem 0 0;
+            color: var(--mute);
+            font-size: .88rem
+        }
+
+        .tc {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            white-space: nowrap
+        }
+
+        .tc small {
+            font-family: var(--sans);
+            font-size: .75rem;
+            color: var(--mute);
+            display: block;
+            line-height: 1.2
+        }
+
+        .field {
+            text-align: right;
+            white-space: nowrap
+        }
+
+        .field b {
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            font-weight: 500
+        }
+
+        .field small {
+            display: block;
+            color: var(--mute);
+            font-size: .75rem
+        }
+
+        /* ---------- host builder ---------- */
+        .host {
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: clamp(2rem, 5vw, 4rem);
+            align-items: start
+        }
+
+        .steps {
+            counter-reset: s;
+            list-style: none;
+            padding: 0;
+            margin: 1.6rem 0 0
+        }
+
+        .steps li {
+            counter-increment: s;
+            padding: 0 0 1.5rem 3rem;
+            position: relative
+        }
+
+        .steps li::before {
+            content: counter(s);
+            position: absolute;
+            left: 0;
+            top: -.15rem;
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            color: var(--brass);
+            width: 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--line);
+            line-height: 1.6
+        }
+
+        .steps b {
+            display: block;
+            font-weight: 600;
+            margin-bottom: .15rem
+        }
+
+        .steps p {
+            margin: 0;
+            color: var(--mute);
+            font-size: .94rem
+        }
+
+        .panel {
+            background: var(--oak-2);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            overflow: hidden
+        }
+
+        .panel-h {
+            padding: .85rem 1.2rem;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .panel-h b {
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 1.05rem
+        }
+
+        .panel-h small {
+            color: var(--mute);
+            font-size: .8rem
+        }
+
+        .panel-b {
+            padding: 1.2rem
+        }
+
+        .fset {
+            margin-bottom: 1.25rem
+        }
+
+        .fset>label {
+            display: block;
+            font-size: .85rem;
+            color: var(--mute);
+            margin-bottom: .5rem
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .45rem
+        }
+
+        .chip {
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--ink);
+            font: inherit;
+            font-size: .9rem;
+            padding: .42rem .85rem;
+            border-radius: 3px;
+            cursor: pointer
+        }
+
+        .chip:hover {
+            border-color: var(--boxwood)
+        }
+
+        .chip[aria-pressed="true"] {
+            background: var(--boxwood);
+            color: #20180E;
+            border-color: var(--boxwood);
+            font-weight: 600
+        }
+
+        input[type=range] {
+            width: 100%;
+            accent-color: var(--brass)
+        }
+
+        .switch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            border-top: 1px solid var(--line);
+            padding-top: 1rem
+        }
+
+        .switch p {
+            margin: 0;
+            font-size: .88rem;
+            color: var(--mute);
+            max-width: 26ch
+        }
+
+        .toggle {
+            position: relative;
+            width: 46px;
+            height: 26px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: var(--oak-3);
+            cursor: pointer;
+            flex: none
+        }
+
+        .toggle::after {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--mute);
+            transition: transform .18s, background .18s
+        }
+
+        .toggle[aria-pressed="true"] {
+            background: rgba(201, 153, 43, .25);
+            border-color: var(--brass)
+        }
+
+        .toggle[aria-pressed="true"]::after {
+            transform: translateX(20px);
+            background: var(--brass)
+        }
+
+        .summary {
+            background: var(--oak-3);
+            border-top: 1px solid var(--line);
+            padding: 1rem 1.2rem;
+            font-size: .95rem
+        }
+
+        .summary p {
+            margin: 0 0 .9rem;
+            color: #D8CCB4
+        }
+
+        .summary strong {
+            color: var(--brass);
+            font-weight: 600
+        }
+
+        /* ---------- feature board ---------- */
+        .tiles {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            overflow: hidden
+        }
+
+        .tile {
+            padding: 1.7rem 1.5rem;
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            background: var(--oak);
+            min-height: 12.5rem;
+            display: flex;
+            flex-direction: column
+        }
+
+        .tile.alt {
+            background: var(--oak-2)
+        }
+
+        .tile .g {
+            font-size: 1.9rem;
+            line-height: 1;
+            color: var(--brass);
+            margin-bottom: .9rem
+        }
+
+        .tile b {
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 1.22rem;
+            display: block;
+            margin-bottom: .35rem
+        }
+
+        .tile p {
+            margin: 0;
+            color: var(--mute);
+            font-size: .92rem
+        }
+
+        .tile a {
+            margin-top: auto;
+            padding-top: .9rem;
+            color: var(--boxwood);
+            font-size: .88rem;
+            font-weight: 600;
+            text-decoration: none
+        }
+
+        .tile a:hover {
+            color: var(--brass)
+        }
+
+        /* ---------- closer ---------- */
+        .closer {
+            text-align: center;
+            padding: clamp(3.5rem, 7vw, 6rem) 0;
+            border-top: 1px solid var(--line)
+        }
+
+        .closer h2 {
+            max-width: 20ch;
+            margin-inline: auto
+        }
+
+        .closer p {
+            color: var(--mute);
+            max-width: 44ch;
+            margin: .9rem auto 2rem
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 2.6rem 0;
+            font-size: .9rem
+        }
+
+        .f-grid {
+            display: grid;
+            grid-template-columns: 1.4fr repeat(3, 1fr);
+            gap: 2rem
+        }
+
+        .f-grid h4 {
+            font-family: var(--sans);
+            font-size: .82rem;
+            color: var(--mute);
+            font-weight: 600;
+            margin: 0 0 .8rem
+        }
+
+        .f-grid ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: .45rem
+        }
+
+        .f-grid a {
+            color: #D8CCB4;
+            text-decoration: none
+        }
+
+        .f-grid a:hover {
+            color: var(--brass)
+        }
+
+        .f-note {
+            color: var(--mute);
+            max-width: 30ch;
+            margin: .7rem 0 0;
+            font-size: .88rem
+        }
+
+        .f-bar {
+            border-top: 1px solid var(--line);
+            margin-top: 2.4rem;
+            padding-top: 1.4rem;
+            color: var(--mute);
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: .85rem
+        }
+
+        @media (max-width:980px) {
+            .hero {
+                grid-template-columns: 1fr
+            }
+
+            .board-unit {
+                flex-direction: column
+            }
+
+            .scoresheet {
+                width: calc(var(--sq)*8)
+            }
+
+            .moves {
+                max-height: 11rem
+            }
+
+            .host {
+                grid-template-columns: 1fr
+            }
+
+            .tiles {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .nav nav {
+                display: none
+            }
+
+            .f-grid {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        @media (max-width:640px) {
+            :root {
+                --sq: min(10.4vw, 52px)
+            }
+
+            .row {
+                grid-template-columns: auto 1fr;
+                gap: .6rem 1rem
+            }
+
+            .row .tc,
+            .row .field {
+                grid-column: 2;
+                text-align: left
+            }
+
+            .row .btn {
+                grid-column: 2;
+                justify-self: start;
+                margin-top: .4rem
+            }
+
+            .tiles {
+                grid-template-columns: 1fr
+            }
+
+            .hide-sm {
+                display: none
+            }
+
+            .tally {
+                gap: 1.4rem;
+                flex-wrap: wrap
+            }
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            * {
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important
+            }
+
+            html {
+                scroll-behavior: auto
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="wrap nav">
+            <a class="mark" href="#top"><span>&#9819;</span>Gambit House</a>
+            <nav>
+                <a href="/about">About</a>
+                <a href="/enquiry">Arenas</a>
+                <a href="#arenas">Arenas</a>
+                <a href="#host">Host</a>
+                <a href="#features">Study</a>
+                <a href="#features">Watch</a>
+            </nav>
+            <div class="acts">
+                <a class="btn btn-ghost hide-sm" href="#">Sign in</a>
+                <a class="btn btn-solid" href="#">Create account</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="top">
+
+        <div class="wrap hero">
+            <div>
+                <h1>Every game deserves<br><em>an audience.</em></h1>
+                <p class="lede">Play rated games in seconds, or run your own arena tournament for eight friends or eight
+                    hundred — pairings, clocks and standings handled.</p>
+                <div class="hero-cta">
+                    <a class="btn btn-solid btn-lg" href="#">Start a game</a>
+                    <a class="btn btn-ghost btn-lg" href="#host">Host an arena</a>
+                </div>
+                <div class="tally">
+                    <div><b>41,208</b><small>playing now</small></div>
+                    <div><b>96</b><small>arenas running</small></div>
+                    <div><b>3.1M</b><small>games yesterday</small></div>
+                </div>
+            </div>
+
+            <div class="board-unit">
+                <div class="board-shell">
+                    <div class="board" id="board" role="img"
+                        aria-label="Chessboard replaying the final moves of Morphy versus the Duke of Brunswick, Paris 1858">
+                    </div>
+                </div>
+                <div class="scoresheet">
+                    <div class="ss-head">
+                        <b>Morphy &ndash; Brunswick</b>
+                        <small>Paris Opera House, 1858</small>
+                    </div>
+                    <div class="clocks">
+                        <div class="clk live">2:14<small>Morphy</small></div>
+                        <div class="clk">0:38<small>Allies</small></div>
+                    </div>
+                    <div class="moves" id="moves"></div>
+                    <div class="ss-foot">
+                        <button id="prev" aria-label="Previous move">&#8249;</button>
+                        <button id="next" aria-label="Next move">&#8250;</button>
+                        <span id="status">Mate in 3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="arenas" class="wrap">
+            <div class="sec-head">
+                <div>
+                    <h2>Arenas open now</h2>
+                    <p>Join any time before the clock runs out. Win streaks earn double points, and the board finds you
+                        a new opponent the moment you resign or mate.</p>
+                </div>
+                <a href="#">All 96 arenas</a>
+            </div>
+            <div class="sheet">
+                <div class="row">
+                    <span class="dot" title="Running now"></span>
+                    <div>
+                        <h3>Thursday Night Bullet</h3>
+                        <p>Open &middot; started 22 minutes ago</p>
+                    </div>
+                    <div class="tc">1+0<small>bullet</small></div>
+                    <div class="field"><b>1,482</b><small>players</small></div>
+                    <a class="btn btn-solid" href="#">Join</a>
+                </div>
+                <div class="row">
+                    <span class="dot" title="Running now"></span>
+                    <div>
+                        <h3>Under 1600 Blitz Ladder</h3>
+                        <p>Rating capped &middot; 41 minutes left</p>
+                    </div>
+                    <div class="tc">3+2<small>blitz</small></div>
+                    <div class="field"><b>608</b><small>players</small></div>
+                    <a class="btn btn-solid" href="#">Join</a>
+                </div>
+                <div class="row">
+                    <span class="dot soon" title="Starting soon"></span>
+                    <div>
+                        <h3>Kingside Club Championship</h3>
+                        <p>Members only &middot; starts in 12 minutes</p>
+                    </div>
+                    <div class="tc">10+5<small>rapid</small></div>
+                    <div class="field"><b>74</b><small>entered</small></div>
+                    <a class="btn btn-ghost" href="#">Enter</a>
+                </div>
+                <div class="row">
+                    <span class="dot soon" title="Starting soon"></span>
+                    <div>
+                        <h3>Queen's Gambit Thematic</h3>
+                        <p>Opening fixed to 1.d4 d5 2.c4 &middot; starts 20:00</p>
+                    </div>
+                    <div class="tc">5+0<small>blitz</small></div>
+                    <div class="field"><b>312</b><small>entered</small></div>
+                    <a class="btn btn-ghost" href="#">Enter</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="host" class="wrap">
+            <div class="host">
+                <div>
+                    <h2>Host an arena in about a minute</h2>
+                    <p style="color:var(--mute);max-width:42ch">You set the shape of the event. Gambit House handles
+                        pairing, fair-play checks, standings and the trophy at the end.</p>
+                    <ol class="steps">
+                        <li><b>Pick a format and clock</b>
+                            <p>Arena, Swiss or knockout, from bullet to classical. Thematic arenas start every game from
+                                a position you choose.</p>
+                        </li>
+                        <li><b>Decide who can play</b>
+                            <p>Open to everyone, limited by rating, or private to your club with a join code.</p>
+                        </li>
+                        <li><b>Share the link</b>
+                            <p>Spectators get live boards and standings without an account. Results post to your club
+                                page when the clock stops.</p>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-h"><b>New arena</b><small>draft &middot; not published</small></div>
+                    <div class="panel-b">
+                        <div class="fset">
+                            <label id="l-fmt">Format</label>
+                            <div class="chips" role="group" aria-labelledby="l-fmt" data-group="fmt">
+                                <button class="chip" aria-pressed="true" data-v="Arena">Arena</button>
+                                <button class="chip" aria-pressed="false" data-v="Swiss">Swiss</button>
+                                <button class="chip" aria-pressed="false" data-v="Knockout">Knockout</button>
+                                <button class="chip" aria-pressed="false" data-v="Thematic">Thematic</button>
+                            </div>
+                        </div>
+                        <div class="fset">
+                            <label id="l-tc">Time control</label>
+                            <div class="chips" role="group" aria-labelledby="l-tc" data-group="tc">
+                                <button class="chip" aria-pressed="false" data-v="1+0">1+0</button>
+                                <button class="chip" aria-pressed="true" data-v="3+2">3+2</button>
+                                <button class="chip" aria-pressed="false" data-v="5+0">5+0</button>
+                                <button class="chip" aria-pressed="false" data-v="10+5">10+5</button>
+                                <button class="chip" aria-pressed="false" data-v="30+20">30+20</button>
+                            </div>
+                        </div>
+                        <div class="fset">
+                            <label for="dur">Runs for <strong id="dur-out" style="color:var(--ink)">90
+                                    minutes</strong></label>
+                            <input type="range" id="dur" min="20" max="240" step="10" value="90">
+                        </div>
+                        <div class="fset">
+                            <label id="l-who">Who can join</label>
+                            <div class="chips" role="group" aria-labelledby="l-who" data-group="who">
+                                <button class="chip" aria-pressed="true" data-v="anyone">Anyone</button>
+                                <button class="chip" aria-pressed="false" data-v="under 1600">Under 1600</button>
+                                <button class="chip" aria-pressed="false" data-v="my club">My club</button>
+                            </div>
+                        </div>
+                        <div class="switch">
+                            <div><b style="font-weight:600">Rated</b>
+                                <p>Results count toward players' ratings.</p>
+                            </div>
+                            <button class="toggle" id="rated" aria-pressed="true" aria-label="Rated arena"></button>
+                        </div>
+                    </div>
+                    <div class="summary">
+                        <p id="summary">An <strong>Arena</strong> at <strong>3+2</strong>, open to
+                            <strong>anyone</strong>, running <strong>90 minutes</strong>. Rated.</p>
+                        <a class="btn btn-solid" href="#">Publish arena</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="wrap">
+            <div class="sec-head">
+                <div>
+                    <h2>The rest of the house</h2>
+                    <p>Everything here is free and unmetered. No move limits, no locked engine depth, no advertising
+                        between games.</p>
+                </div>
+            </div>
+            <div class="tiles">
+                <div class="tile">
+                    <div class="g">&#9816;</div><b>Puzzles</b>
+                    <p>Four million positions taken from real games, served at the difficulty that keeps you just
+                        uncomfortable.</p><a href="#">Solve one now</a>
+                </div>
+                <div class="tile alt">
+                    <div class="g">&#9815;</div><b>Analysis</b>
+                    <p>Run any game through a full-strength engine, or let the coach point at the three moves that
+                        decided it.</p><a href="#">Analyse a game</a>
+                </div>
+                <div class="tile">
+                    <div class="g">&#9814;</div><b>Openings</b>
+                    <p>Walk your repertoire against a database of two billion games and see where amateurs actually go
+                        wrong.</p><a href="#">Open the explorer</a>
+                </div>
+                <div class="tile alt">
+                    <div class="g">&#9817;</div><b>Clubs</b>
+                    <p>Give your club a home page, a members list, a rating ladder and a calendar of its own arenas.</p>
+                    <a href="#">Start a club</a>
+                </div>
+                <div class="tile alt">
+                    <div class="g">&#9818;</div><b>Broadcasts</b>
+                    <p>Relay an over-the-board event live from a DGT board, with commentary and engine lines for
+                        viewers.</p><a href="#">Relay an event</a>
+                </div>
+                <div class="tile">
+                    <div class="g">&#9812;</div><b>Studies</b>
+                    <p>Build annotated chapters with arrows and variations, then share them with a class or the whole
+                        site.</p><a href="#">Make a study</a>
+                </div>
+                <div class="tile alt">
+                    <div class="g">&#9817;</div><b>Correspondence</b>
+                    <p>Games measured in days, playable from a phone on the train. Conditional moves included.</p><a
+                        href="#">Play by the day</a>
+                </div>
+                <div class="tile">
+                    <div class="g">&#9816;</div><b>Fair play</b>
+                    <p>Every arena is screened for engine assistance, and flagged results are reversed before trophies
+                        go out.</p><a href="#">How it works</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="closer wrap">
+            <h2>Twelve minutes until the next arena.</h2>
+            <p>Make an account and you'll be paired with someone your strength before it starts.</p>
+            <a class="btn btn-solid btn-lg" href="#">Create a free account</a>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <div class="f-grid">
+                <div>
+                    <a class="mark" href="#top"><span>&#9819;</span>Gambit House</a>
+                    <p class="f-note">A not-for-profit chess server, open source and paid for by its players.</p>
+                </div>
+                <div>
+                    <h4>Play</h4>
+                    <ul>
+                        <li><a href="#">Quick pairing</a></li>
+                        <li><a href="#">Arenas</a></li>
+                        <li><a href="#">Correspondence</a></li>
+                        <li><a href="#">Play a friend</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="#">Puzzles</a></li>
+                        <li><a href="#">Openings</a></li>
+                        <li><a href="#">Studies</a></li>
+                        <li><a href="#">Coaches</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#">Clubs</a></li>
+                        <li><a href="#">Broadcasts</a></li>
+                        <li><a href="#">Forum</a></li>
+                        <li><a href="#">Fair play</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="f-bar">
+                <span>&copy; 2026 Gambit House</span>
+                <span>Pieces after the Staunton pattern, 1849</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            /* ---------- board: Opera Game, after 15...Nxd7 ---------- */
+            var GLYPH = { K: "\u265A", Q: "\u265B", R: "\u265C", B: "\u265D", N: "\u265E", P: "\u265F" };
+            var START = [
+                ["br", "", "", "", "bk", "bb", "", "br"],
+                ["bp", "", "", "bn", "", "bp", "bp", "bp"],
+                ["", "", "", "", "bq", "bn", "", ""],
+                ["", "", "", "", "bp", "wb", "", ""],
+                ["", "", "", "", "wp", "", "", ""],
+                ["", "wq", "", "", "", "", "", ""],
+                ["wp", "wp", "wp", "", "", "wp", "wp", "wp"],
+                ["", "", "wk", "wr", "", "", "", ""]
+            ];
+            var LINE = [
+                { n: 16, w: { from: "b3", to: "b8", san: "Qb8+" }, b: { from: "d7", to: "b8", san: "Nxb8" } },
+                { n: 17, w: { from: "d1", to: "d8", san: "Rd8#" }, b: null }
+            ];
+            var PLIES = [LINE[0].w, LINE[0].b, LINE[1].w];
+
+            var board = document.getElementById("board");
+            var movesEl = document.getElementById("moves");
+            var statusEl = document.getElementById("status");
+            var pieces = {}, ply = 0, timer = null;
+
+            function file(s) { return s.charCodeAt(0) - 97; }
+            function rank(s) { return 8 - parseInt(s[1], 10); }   /* row index */
+
+            function build() {
+                board.innerHTML = "";
+                pieces = {};
+                for (var r = 0; r < 8; r++) {
+                    for (var c = 0; c < 8; c++) {
+                        var sq = document.createElement("div");
+                        sq.className = "sq " + ((r + c) % 2 === 0 ? "l" : "d");
+                        sq.dataset.rc = r + "-" + c;
+                        board.appendChild(sq);
+                    }
+                }
+                for (var r2 = 0; r2 < 8; r2++) {
+                    for (var c2 = 0; c2 < 8; c2++) {
+                        var code = START[r2][c2];
+                        if (!code) continue;
+                        var el = document.createElement("div");
+                        el.className = "pc " + code[0];
+                        el.textContent = GLYPH[code[1].toUpperCase()];
+                        place(el, r2, c2);
+                        board.appendChild(el);
+                        pieces[r2 + "-" + c2] = el;
+                    }
+                }
+            }
+            function place(el, r, c) {
+                el.style.setProperty("--x", (c * 100) + "%");
+                el.style.setProperty("--y", (r * 100) + "%");
+                el.style.transform = "translate(" + (c * 100) + "%," + (r * 100) + "%)";
+            }
+            function clearHot() {
+                var hot = board.querySelectorAll(".sq.hot");
+                for (var i = 0; i < hot.length; i++) hot[i].classList.remove("hot");
+            }
+            function mark(sq) {
+                var el = board.querySelector('[data-rc="' + rank(sq) + "-" + file(sq) + '"]');
+                if (el) el.classList.add("hot");
+            }
+            function apply(mv) {
+                var fr = rank(mv.from), fc = file(mv.from), tr = rank(mv.to), tc = file(mv.to);
+                var moving = pieces[fr + "-" + fc];
+                if (!moving) return;
+                var taken = pieces[tr + "-" + tc];
+                if (taken) { taken.classList.add("gone"); setTimeout(function () { if (taken.parentNode) taken.parentNode.removeChild(taken); }, 240); }
+                delete pieces[fr + "-" + fc];
+                pieces[tr + "-" + tc] = moving;
+                place(moving, tr, tc);
+                clearHot(); mark(mv.from); mark(mv.to);
+            }
+            function renderMoves() {
+                movesEl.innerHTML = "";
+                LINE.forEach(function (pair, i) {
+                    var row = document.createElement("div"); row.className = "mv";
+                    var num = document.createElement("i"); num.textContent = pair.n + ".";
+                    row.appendChild(num);
+                    [pair.w, pair.b].forEach(function (m, side) {
+                        var b = document.createElement("button");
+                        if (!m) { b.textContent = ""; b.disabled = true; }
+                        else {
+                            b.textContent = m.san;
+                            var idx = i * 2 + side + 1;
+                            b.dataset.ply = idx;
+                            b.addEventListener("click", function () { stop(); goTo(idx); });
+                        }
+                        row.appendChild(b);
+                    });
+                    movesEl.appendChild(row);
+                });
+                highlight();
+            }
+            function highlight() {
+                var bs = movesEl.querySelectorAll("button");
+                for (var i = 0; i < bs.length; i++) {
+                    bs[i].classList.toggle("on", Number(bs[i].dataset.ply) === ply);
+                }
+                statusEl.textContent = ply === 0 ? "Mate in 3" : (ply === PLIES.length ? "Black is mated" : "Move " + ply + " of " + PLIES.length);
+            }
+            function goTo(target) {
+                build();
+                for (var i = 0; i < target; i++) apply(PLIES[i]);
+                ply = target;
+                highlight();
+            }
+            function step() {
+                if (ply >= PLIES.length) return false;
+                apply(PLIES[ply]); ply++; highlight(); return true;
+            }
+            function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+            document.getElementById("next").addEventListener("click", function () { stop(); step(); });
+            document.getElementById("prev").addEventListener("click", function () { stop(); if (ply > 0) goTo(ply - 1); });
+
+            build(); renderMoves();
+
+            var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (!reduced) {
+                setTimeout(function () {
+                    timer = setInterval(function () { if (!step()) stop(); }, 1400);
+                }, 1200);
+            }
+
+            /* ---------- arena builder ---------- */
+            var state = { fmt: "Arena", tc: "3+2", who: "anyone", dur: 90, rated: true };
+            document.querySelectorAll(".chips").forEach(function (group) {
+                var key = group.dataset.group;
+                group.addEventListener("click", function (e) {
+                    var btn = e.target.closest(".chip"); if (!btn) return;
+                    group.querySelectorAll(".chip").forEach(function (c) { c.setAttribute("aria-pressed", "false"); });
+                    btn.setAttribute("aria-pressed", "true");
+                    state[key] = btn.dataset.v;
+                    draw();
+                });
+            });
+            var dur = document.getElementById("dur"), durOut = document.getElementById("dur-out");
+            dur.addEventListener("input", function () { state.dur = Number(dur.value); draw(); });
+            var rated = document.getElementById("rated");
+            rated.addEventListener("click", function () {
+                state.rated = !state.rated;
+                rated.setAttribute("aria-pressed", String(state.rated));
+                draw();
+            });
+            function human(m) {
+                if (m < 60) return m + " minutes";
+                var h = Math.floor(m / 60), r = m % 60;
+                return h + " hour" + (h > 1 ? "s" : "") + (r ? " " + r + " minutes" : "");
+            }
+            function draw() {
+                durOut.textContent = human(state.dur);
+                document.getElementById("summary").innerHTML =
+                    "A" + (/^[AEIOU]/.test(state.fmt) ? "n" : "") + " <strong>" + state.fmt + "</strong> at <strong>" + state.tc +
+                    "</strong>, open to <strong>" + state.who + "</strong>, running <strong>" + human(state.dur) +
+                    "</strong>. " + (state.rated ? "Rated." : "Casual, unrated.");
+            }
+            draw();
+        })();
+    </script>
+</body>
+
+</html>
