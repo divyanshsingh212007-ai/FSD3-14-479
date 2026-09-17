@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About — Gambit House</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400&family=Karla:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --oak: #191410;
+            --oak-2: #211A14;
+            --oak-3: #2B221A;
+            --walnut: #7A5334;
+            --boxwood: #EADFC4;
+            --brass: #C9992B;
+            --clock: #D0472F;
+            --ink: #F3EADA;
+            --mute: #A08F76;
+            --line: rgba(234, 223, 196, .14);
+            --serif: "Bodoni Moda", Georgia, "Times New Roman", serif;
+            --sans: "Karla", "Helvetica Neue", Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            background: var(--oak);
+            color: var(--ink);
+            font-family: var(--sans);
+            font-size: 17px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased
+        }
+
+        a {
+            color: inherit
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--brass);
+            outline-offset: 3px;
+            border-radius: 2px
+        }
+
+        .wrap {
+            width: min(1180px, 92vw);
+            margin-inline: auto
+        }
+
+        .narrow {
+            width: min(720px, 92vw);
+            margin-inline: auto
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            background: rgba(25, 20, 16, .9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line)
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: .9rem 0
+        }
+
+        .mark {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            font-family: var(--serif);
+            font-size: 1.28rem;
+            text-decoration: none;
+            white-space: nowrap
+        }
+
+        .mark span {
+            color: var(--brass);
+            font-size: 1.5rem;
+            line-height: 1
+        }
+
+        .nav nav {
+            display: flex;
+            gap: 1.6rem;
+            margin-left: auto;
+            font-size: .95rem
+        }
+
+        .nav nav a {
+            text-decoration: none;
+            color: var(--mute);
+            padding: .2rem 0;
+            border-bottom: 1px solid transparent
+        }
+
+        .nav nav a:hover {
+            color: var(--ink);
+            border-bottom-color: var(--brass)
+        }
+
+        .nav nav a[aria-current] {
+            color: var(--ink);
+            border-bottom-color: var(--brass)
+        }
+
+        .nav .acts {
+            display: flex;
+            gap: .6rem;
+            align-items: center
+        }
+
+        .btn {
+            font-size: .95rem;
+            font-weight: 600;
+            border-radius: 3px;
+            padding: .62rem 1.15rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            transition: background .15s, color .15s, border-color .15s
+        }
+
+        .btn-solid {
+            background: var(--brass);
+            color: #1B1408
+        }
+
+        .btn-solid:hover {
+            background: #DBAA3A
+        }
+
+        .btn-ghost {
+            border-color: var(--line);
+            color: var(--ink);
+            background: transparent
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--boxwood);
+            background: rgba(234, 223, 196, .06)
+        }
+
+        .btn-lg {
+            padding: .85rem 1.6rem;
+            font-size: 1.02rem
+        }
+
+        h1 {
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: clamp(2.5rem, 5.6vw, 4.2rem);
+            line-height: 1.04;
+            margin: 0 0 1.2rem;
+            letter-spacing: -.015em
+        }
+
+        h1 em {
+            font-style: italic
+        }
+
+        h2 {
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+            margin: 0;
+            letter-spacing: -.01em
+        }
+
+        section {
+            padding: clamp(3rem, 6vw, 5.5rem) 0
+        }
+
+        .sec-head {
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 1rem;
+            margin-bottom: 2.2rem
+        }
+
+        .sec-head p {
+            margin: .4rem 0 0;
+            color: var(--mute);
+            max-width: 52ch;
+            font-size: .98rem
+        }
+
+        /* hero */
+        .top {
+            padding: clamp(3.5rem, 8vw, 6.5rem) 0 clamp(2rem, 4vw, 3rem)
+        }
+
+        .top p {
+            font-size: 1.15rem;
+            color: #D8CCB4;
+            max-width: 46ch
+        }
+
+        .top .from {
+            font-family: var(--serif);
+            font-style: italic;
+            color: var(--mute);
+            font-size: 1.05rem;
+            margin-bottom: 1.6rem
+        }
+
+        /* the bar of numbers */
+        .figures {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            overflow: hidden
+        }
+
+        .figures div {
+            padding: 1.4rem 1.3rem;
+            border-right: 1px solid var(--line);
+            background: var(--oak-2)
+        }
+
+        .figures div:nth-child(even) {
+            background: var(--oak)
+        }
+
+        .figures div:last-child {
+            border-right: 0
+        }
+
+        .figures b {
+            display: block;
+            font-family: var(--serif);
+            font-size: clamp(1.7rem, 3vw, 2.3rem);
+            font-weight: 500;
+            line-height: 1.1
+        }
+
+        .figures small {
+            color: var(--mute);
+            font-size: .85rem
+        }
+
+        /* prose */
+        .prose p {
+            max-width: 64ch;
+            color: #D8CCB4
+        }
+
+        .prose p:first-child {
+            margin-top: 0
+        }
+
+        .prose h3 {
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 1.4rem;
+            margin: 2.4rem 0 .6rem
+        }
+
+        .pull {
+            font-family: var(--serif);
+            font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+            line-height: 1.3;
+            color: var(--ink);
+            border-left: 2px solid var(--brass);
+            padding: .2rem 0 .2rem 1.4rem;
+            margin: 2.2rem 0;
+            max-width: 34ch
+        }
+
+        /* history as a scoresheet */
+        .sheet {
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            overflow: hidden
+        }
+
+        .ply {
+            display: grid;
+            grid-template-columns: 5.5rem 1fr;
+            gap: 1.6rem;
+            padding: 1.1rem 1.3rem;
+            border-bottom: 1px solid var(--line);
+            background: var(--oak-2)
+        }
+
+        .ply:nth-child(even) {
+            background: var(--oak)
+        }
+
+        .ply:last-child {
+            border-bottom: 0
+        }
+
+        .ply time {
+            font-family: var(--serif);
+            font-size: 1.35rem;
+            color: var(--brass)
+        }
+
+        .ply b {
+            display: block;
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 1.15rem;
+            margin-bottom: .2rem
+        }
+
+        .ply p {
+            margin: 0;
+            color: var(--mute);
+            font-size: .94rem;
+            max-width: 62ch
+        }
+
+        /* people */
+        .crew {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            overflow: hidden
+        }
+
+        .who {
+            padding: 1.6rem 1.4rem;
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            background: var(--oak)
+        }
+
+        .who.alt {
+            background: var(--oak-2)
+        }
+
+        .who .g {
+            font-size: 1.7rem;
+            color: var(--brass);
+            line-height: 1;
+            margin-bottom: .8rem
+        }
+
+        .who b {
+            display: block;
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 1.18rem
+        }
+
+        .who em {
+            font-style: normal;
+            color: var(--brass);
+            font-size: .82rem;
+            display: block;
+            margin-bottom: .5rem
+        }
+
+        .who p {
+            margin: 0;
+            color: var(--mute);
+            font-size: .92rem
+        }
+
+        /* promises */
+        .vows {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 0;
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            overflow: hidden
+        }
+
+        .vows li {
+            padding: 1.3rem 1.4rem;
+            border-bottom: 1px solid var(--line);
+            background: var(--oak-2);
+            display: grid;
+            grid-template-columns: 2rem 1fr;
+            gap: 1rem;
+            align-items: start
+        }
+
+        .vows li:nth-child(even) {
+            background: var(--oak)
+        }
+
+        .vows li:last-child {
+            border-bottom: 0
+        }
+
+        .vows span {
+            color: var(--brass);
+            font-size: 1.15rem;
+            line-height: 1.4
+        }
+
+        .vows b {
+            display: block;
+            font-weight: 600;
+            margin-bottom: .15rem
+        }
+
+        .vows p {
+            margin: 0;
+            color: var(--mute);
+            font-size: .94rem;
+            max-width: 64ch
+        }
+
+        .closer {
+            text-align: center;
+            padding: clamp(3.5rem, 7vw, 6rem) 0;
+            border-top: 1px solid var(--line)
+        }
+
+        .closer p {
+            color: var(--mute);
+            max-width: 44ch;
+            margin: .9rem auto 2rem
+        }
+
+        .closer .row {
+            display: flex;
+            gap: .8rem;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 2.6rem 0;
+            font-size: .9rem
+        }
+
+        .f-grid {
+            display: grid;
+            grid-template-columns: 1.4fr repeat(3, 1fr);
+            gap: 2rem
+        }
+
+        .f-grid h4 {
+            font-size: .82rem;
+            color: var(--mute);
+            font-weight: 600;
+            margin: 0 0 .8rem
+        }
+
+        .f-grid ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: .45rem
+        }
+
+        .f-grid a {
+            color: #D8CCB4;
+            text-decoration: none
+        }
+
+        .f-grid a:hover {
+            color: var(--brass)
+        }
+
+        .f-note {
+            color: var(--mute);
+            max-width: 30ch;
+            margin: .7rem 0 0;
+            font-size: .88rem
+        }
+
+        .f-bar {
+            border-top: 1px solid var(--line);
+            margin-top: 2.4rem;
+            padding-top: 1.4rem;
+            color: var(--mute);
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: .85rem
+        }
+
+        @media (max-width:980px) {
+            .nav nav {
+                display: none
+            }
+
+            .figures {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .figures div:nth-child(2) {
+                border-right: 0
+            }
+
+            .crew {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .f-grid {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        @media (max-width:640px) {
+            .figures {
+                grid-template-columns: 1fr
+            }
+
+            .figures div {
+                border-right: 0;
+                border-bottom: 1px solid var(--line)
+            }
+
+            .crew {
+                grid-template-columns: 1fr
+            }
+
+            .ply {
+                grid-template-columns: 1fr;
+                gap: .3rem
+            }
+
+            .hide-sm {
+                display: none
+            }
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            * {
+                transition-duration: .01ms !important
+            }
+
+            html {
+                scroll-behavior: auto
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="wrap nav">
+            <a class="mark" href="index.html"><span>&#9819;</span>Gambit House</a>
+            <nav>
+                <a href="index.html#arenas">Arenas</a>
+                <a href="index.html#host">Host</a>
+                <a href="about.html" aria-current="page">About</a>
+                <a href="enquiry.html">Enquiry</a>
+            </nav>
+            <div class="acts">
+                <a class="btn btn-ghost hide-sm" href="#">Sign in</a>
+                <a class="btn btn-solid" href="#">Create account</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <div class="wrap top">
+            <p class="from">About Gambit House</p>
+            <h1>A chess server that<br>answers to <em>its players.</em></h1>
+            <p>We started in a Rotterdam flat in 2013 because the club had nowhere to play on a Tuesday. Thirteen years
+                later the servers are bigger and the rule is the same: everything free, nothing sold, no one's game
+                turned into an advertisement.</p>
+        </div>
+
+        <div class="wrap">
+            <div class="figures">
+                <div><b>2013</b><small>first game played</small></div>
+                <div><b>9.4M</b><small>registered players</small></div>
+                <div><b>&euro;0</b><small>cost to play, ever</small></div>
+                <div><b>100%</b><small>funded by donations</small></div>
+            </div>
+        </div>
+
+        <section class="narrow prose">
+            <h2>Why we exist</h2>
+            <p style="margin-top:1.2rem">Chess is roughly fifteen hundred years old and belongs to nobody. That seemed
+                like a poor match for a game locked behind a subscription, with an engine that only thinks properly once
+                you've paid, and a puzzle counter that stops at five a day.</p>
+            <p>So Gambit House was built the other way round. Every feature on the site is available to every account
+                from the first minute: full-depth analysis, unlimited puzzles, the complete opening database, tournament
+                hosting, broadcasts, coaching tools. There is no premium tier to upgrade to, because there is nothing
+                behind it.</p>
+
+            <div class="pull">If a feature is worth building, it is worth giving to everyone who plays here.</div>
+
+            <h3>How it's paid for</h3>
+            <p>Players donate. That's the whole model. Roughly one in four hundred accounts gives something in a year,
+                which covers the servers, the engine farm, the fair-play team and eleven salaries. We publish the
+                accounts every January, down to the line item, and the code has been open source since the first commit.
+            </p>
+            <p>We don't run advertising, we don't sell analytics about your games, and we have turned down acquisition
+                offers three times. The nonprofit foundation that owns the site cannot be sold; that was written into
+                its statutes in 2016 specifically so that this sentence would still be true today.</p>
+
+            <h3>On fair play</h3>
+            <p>An engine can beat any human alive, which makes cheating the one thing that could genuinely kill an
+                online chess server. Every rated game is screened, every arena is reviewed before trophies are awarded,
+                and appeals are read by people rather than a model. We would rather reverse a result late than leave a
+                false one standing.</p>
+        </section>
+
+        <section class="wrap">
+            <div class="sec-head">
+                <h2>The moves so far</h2>
+                <p>Thirteen years, condensed. The years that mattered were rarely the ones with the biggest numbers.</p>
+            </div>
+            <div class="sheet">
+                <div class="ply"><time>2013</time>
+                    <div><b>A flat in Rotterdam</b>
+                        <p>Written over one winter so the Kingside club had somewhere to play between Tuesdays. Fourteen
+                            members, one server under a desk.</p>
+                    </div>
+                </div>
+                <div class="ply"><time>2015</time>
+                    <div><b>Arenas arrive</b>
+                        <p>Anyone could now run a tournament without asking us first. Within a month players were
+                            hosting more events per week than we had held in the previous two years.</p>
+                    </div>
+                </div>
+                <div class="ply"><time>2016</time>
+                    <div><b>The foundation</b>
+                        <p>Ownership moved to a nonprofit whose statutes forbid sale, advertising and paid features.
+                            Three acquisition approaches have been declined since.</p>
+                    </div>
+                </div>
+                <div class="ply"><time>2019</time>
+                    <div><b>Fair play team</b>
+                        <p>Screening moved from a script to a standing team of eight, with a published appeals process
+                            and a public record of reversed results.</p>
+                    </div>
+                </div>
+                <div class="ply"><time>2021</time>
+                    <div><b>Ten million games in a day</b>
+                        <p>The site fell over twice during the boom. The post-mortems are still online, unedited,
+                            including the embarrassing one about the database index.</p>
+                    </div>
+                </div>
+                <div class="ply"><time>2024</time>
+                    <div><b>Broadcasts and clubs</b>
+                        <p>Over-the-board events started relaying through us from DGT boards, and clubs got their own
+                            pages, ladders and calendars.</p>
+                    </div>
+                </div>
+                <div class="ply"><time>2026</time>
+                    <div><b>Ninety-six arenas at once</b>
+                        <p>Almost all of them run by players we have never met, which is the part we're proudest of.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="wrap">
+            <div class="sec-head">
+                <h2>Who's here</h2>
+                <p>Eleven people, four countries, one shared calendar of arenas we are all losing in.</p>
+            </div>
+            <div class="crew">
+                <div class="who">
+                    <div class="g">&#9812;</div><b>Anneke Vos</b><em>Director</em>
+                    <p>Wrote the first version in that Rotterdam flat. Still reviews every change to the pairing code.
+                    </p>
+                </div>
+                <div class="who alt">
+                    <div class="g">&#9813;</div><b>Ravi Menon</b><em>Fair play</em>
+                    <p>Leads the team that screens rated games and reads every appeal that comes in.</p>
+                </div>
+                <div class="who">
+                    <div class="g">&#9814;</div><b>Mira Sokolova</b><em>Engineering</em>
+                    <p>Keeps the arena servers standing when forty thousand people arrive at once.</p>
+                </div>
+                <div class="who alt">
+                    <div class="g">&#9815;</div><b>Tobias Lund</b><em>Learning</em>
+                    <p>Builds the puzzle and study tools, and argues with coaches about difficulty curves.</p>
+                </div>
+                <div class="who">
+                    <div class="g">&#9816;</div><b>Grace Abara</b><em>Community</em>
+                    <p>Looks after clubs, broadcasts and the volunteers who moderate the forum.</p>
+                </div>
+                <div class="who alt">
+                    <div class="g">&#9817;</div><b>Volunteers</b><em>Around 300</em>
+                    <p>Translators, moderators, puzzle curators and coaches who keep the place running in 42 languages.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="wrap">
+            <div class="sec-head">
+                <h2>What we promise</h2>
+                <p>Four commitments written into the foundation's statutes. Changing any of them needs a vote of the
+                    members, not a decision by us.</p>
+            </div>
+            <ul class="vows">
+                <li><span>&#9679;</span>
+                    <div><b>Free means free</b>
+                        <p>No premium tier, no feature limits, no move caps, no engine depth held back for paying
+                            accounts.</p>
+                    </div>
+                </li>
+                <li><span>&#9679;</span>
+                    <div><b>Your games are yours</b>
+                        <p>Export everything you've ever played as PGN, at any time. We don't sell game data or
+                            behavioural analytics to anyone.</p>
+                    </div>
+                </li>
+                <li><span>&#9679;</span>
+                    <div><b>Open books, open source</b>
+                        <p>Annual accounts published every January, line by line. The entire codebase is public and
+                            licensed for reuse.</p>
+                    </div>
+                </li>
+                <li><span>&#9679;</span>
+                    <div><b>Not for sale</b>
+                        <p>The foundation cannot be acquired. If Gambit House ever shuts down, the code and the database
+                            stay public.</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <div class="closer wrap">
+            <h2>Come and lose a few games.</h2>
+            <p>Or ask us something — we answer everything that isn't obviously a bot.</p>
+            <div class="row">
+                <a class="btn btn-solid btn-lg" href="index.html">Play a game</a>
+                <a class="btn btn-ghost btn-lg" href="enquiry.html">Send an enquiry</a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <div class="f-grid">
+                <div>
+                    <a class="mark" href="index.html"><span>&#9819;</span>Gambit House</a>
+                    <p class="f-note">A not-for-profit chess server, open source and paid for by its players.</p>
+                </div>
+                <div>
+                    <h4>Play</h4>
+                    <ul>
+                        <li><a href="index.html">Quick pairing</a></li>
+                        <li><a href="index.html#arenas">Arenas</a></li>
+                        <li><a href="#">Correspondence</a></li>
+                        <li><a href="#">Play a friend</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="#">Puzzles</a></li>
+                        <li><a href="#">Openings</a></li>
+                        <li><a href="#">Studies</a></li>
+                        <li><a href="#">Coaches</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="enquiry.html">Enquiry</a></li>
+                        <li><a href="#">Forum</a></li>
+                        <li><a href="#">Fair play</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="f-bar"><span>&copy; 2026 Gambit House</span><span>Pieces after the Staunton pattern, 1849</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
