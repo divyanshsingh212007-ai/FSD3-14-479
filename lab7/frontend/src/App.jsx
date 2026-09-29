@@ -15,10 +15,10 @@ function Book() {
         src={b1.picUrl}
         alt={b1.bname}
       />
-      <h1> Let us React</h1>
-      <h2> Price: 765.00</h2>
-      <h3> Quantity: 5</h3>
-      <h4> Rating: 5.0</h4>
+      <h1> {b1.bname}</h1>
+      <h2> Price: {b1.price}</h2>
+      <h3> Quantity: {b1.quantity}</h3>
+      <h4> Rating: {b1.quantity}</h4>
     </div>
   );
 }
