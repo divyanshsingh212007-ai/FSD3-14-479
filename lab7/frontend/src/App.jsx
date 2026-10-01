@@ -6,37 +6,42 @@ const b1 = {
   rating: 5.0,
 };
 
-
-
+const b2 = {
+  picUrl: "https://m.media-amazon.com/images/I/51eQekkEKoL._AC_UY327_QL65_.jpg",
+  bname: "React.js for beginners",
+  price: 197,
+  quantity: 10,
+  rating: 3.3,
+};
 
 
 function Book(props) {
-  console.log(props);
+  const { bname,price,quantity,rating,picUrl }=props.book;
   return (
-    <div>
-      <img
-        src={props.book.picUrl}
-        alt={props.book.bname}
-      />
-      <h1> {props.book.bname}</h1>
-      <h2> Price: {props.book.price}</h2>
-      <h3> Quantity: {props.book.quantity}</h3>
-      <h4> Rating: {props.book.quantity}</h4>
+    <div className="book">
+      <img src={picUrl} alt={bname} />
+      <h1> {bname}</h1>
+      <h2> Price: {price}</h2>
+      <h3> Quantity: {quantity}</h3>
+      <h4> Rating: {quantity}</h4>
+      <button className="btn">Buy Now</button>
     </div>
   );
 }
 
-
-
 export default function App() {
+  
 
   return (
     <>
+    <h1>Online Book Store</h1>;
+    <div className="container">
       <Book book={b1}/>
-      <h1> Hello React</h1>;
       <Book book={b1}/>
-      <Book book={b1}/>
-      <Book book={b1}/>
+      <Book book={b2}/>
+      <Book book={b2}/>
+      
+    </div>
     </>
   );
 }
