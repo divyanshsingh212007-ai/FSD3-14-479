@@ -22,3 +22,13 @@
 2. It must starts with capital letter.
 3. It should be treated as html tag.
 4. It must be closed. 
+
+## Object destructure
+`const { bname,price,quantity,rating,picUrl }=props.book;`
+Does not depend on order, if property is not available then it is initialized with null.
+2. Any components includes styles.
+    a. External CSS
+    create class in index.css and use in component.
+    b. Internal css
+    create property as object.Then apply with style attribute and pass the object.
+    c. In this method, we use two curly bracket  with style attribute. All the css property must be single word(textAlign....not text-align).
