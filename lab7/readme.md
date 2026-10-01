@@ -23,6 +23,9 @@
 3. It should be treated as html tag.
 4. It must be closed. 
 
+rafce = creates arrow function
+rfce = creates normal function
+
 ## Object destructure
 `const { bname,price,quantity,rating,picUrl }=props.book;`
 Does not depend on order, if property is not available then it is initialized with null.

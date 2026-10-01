@@ -13,7 +13,7 @@ export default function Book(props) {
       <h1> {bname}</h1>
       <h2> Price: {price}</h2>
       <h3 style={qtyStyle}> Quantity: {quantity}</h3>
-      <h4 style={{ color: "red", textAlign: "center" }}> Rating: {quantity}</h4>
+      <h4 style={{ color: "red", textAlign: "center" }}> Rating: {rating}</h4>
       <button className="btn">Buy Now</button>
     </div>
   );
