@@ -37,3 +37,4 @@ Does not depend on order, if property is not available then it is initialized wi
     c. In this method, we use two curly bracket  with style attribute. All the css property must be single word(textAlign....not text-align).
 
 ## App.jsx should have minimum code.
+## By default button in HTML is submit button.
