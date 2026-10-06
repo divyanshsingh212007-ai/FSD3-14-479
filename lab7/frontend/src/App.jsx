@@ -41,6 +41,8 @@ export default function App() {
       <Book book={b1}/>
       <Book book={b2}/>
       <Book book={b2}/>
+      <Pen pen={p1}/>
+      <Pen pen={p2}/>
       
       
     </div>
