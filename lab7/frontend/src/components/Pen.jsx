@@ -4,7 +4,7 @@ const Pen = (props) => {
   return (
     <div className="Book">
       <img src={picUrl} alt={company} />
-      <h3>{Company}</h3>
+      <h3>{company}</h3>
       <h4>Rs. {price}</h4>
     </div>
   )
